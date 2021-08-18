@@ -1,4 +1,4 @@
-# Metrostroi Clock Arrive
+# Metrostroi Clock Arrive V2.0
 
 **Модель:** Jarrius
 
@@ -8,7 +8,7 @@
 
 ![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive.jpg)
 
-**Аддон в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
+**Оригинальный аддон в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
 
 **Описание:**
 

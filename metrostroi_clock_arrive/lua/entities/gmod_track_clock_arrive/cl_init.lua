@@ -169,7 +169,7 @@ function ENT:Think()
 		return self.ArriveTime
 	end) ]]
 	
-	print(self.Station.." - "..self.Path.." - "..self.RealInterval)
+	--print(self.Station.." - "..self.Path.." - "..self.RealInterval)
 	
     if not self:GetTrain() or self.TrainLeaves then		
 		self.RealInterval = self:GetNW2Int("ArriveTime", -1)

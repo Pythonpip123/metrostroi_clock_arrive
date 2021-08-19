@@ -61,5 +61,5 @@ After all monitor are spawned (or after each monitor spawn) you need to click **
 
 If you have some old monitors, that use old model, then you will face a problem with wrong spawn angles. Use the "fix old positions/angles" to fix that.
 
-**P.S.** Не забывайте сохранять мониторы после внесения любых изменений! Don't forget to save all changes that you've made before disconnecting, restarting server or changing map!
+**P.S.** Don't forget to save all changes that you've made before disconnecting, restarting server or changing map!
 

@@ -47,6 +47,7 @@ function ENT:Think()
 		
 		local TrainPath = train:ReadCell(49170)
 		local TrainStation = train:ReadCell(49160)
+		if not TrainStation then TrainStation = train:ReadCell(49161)
 		local StationPath = self.Path
 		if StationPath != TrainPath then continue end
 		if math.abs(self.Station - TrainStation) > 3 then continue end

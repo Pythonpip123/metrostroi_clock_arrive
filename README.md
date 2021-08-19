@@ -1,10 +1,10 @@
 # Metrostroi Clock Arrive V2.0 (RU)
 
+![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive_v20.jpg)
+
 **Модель:** Jarrius
 
-**Скрипты:** Alexell
-
-![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive.jpg)
+**Оригинальные скрипты:** Alexell: https://alexell.ru/
 
 **Оригинальный аддон в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
 

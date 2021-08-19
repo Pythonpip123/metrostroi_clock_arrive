@@ -158,7 +158,7 @@ function ENT:Think()
 		self:SetNextClientThink(CurTime()+1)
 		return true
     end
-	--[[ временно отключено, под вопросом 
+	--[[ временно отключено, и вообще под вопросом 
 	net.Receive("ClockArriveTime", function()
 		local ETA = net.ReadInt(13)
 		if isnumber(ETA) and ETA > 0 then
@@ -169,7 +169,7 @@ function ENT:Think()
 		return self.ArriveTime
 	end) ]]
 	
-	--print(self.Station.." - "..self.Path.." - "..self.RealInterval) 	--отладочная строка
+	--print(self.Station.." - "..self.Path.." - "..self.RealInterval) 	-- отладочная строка.. 
 	
     if not self:GetTrain() or self.TrainLeaves then		
 		self.RealInterval = self:GetNW2Int("ArriveTime", -1)

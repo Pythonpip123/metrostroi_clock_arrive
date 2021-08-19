@@ -189,18 +189,25 @@ function ENT:Think()
 		end
 	end 
 	if self:GetTrain() then
-		if not self:GetTrainStopped() then
-			self.TrainArrives = true
-			self.LocalInterval = -1 -- поезд прибывает
+		if self:GetTrainStopped() then
+			self.TrainArrived = true
 		else
-			if self.TrainArrives == true then
-				self.TrainArrives = false
-				self.TrainLeaves = true
+			if self.TrainLeave == false then
+				if self.TrainArrived == true then
+					self.TrainArrived = false
+					self.TrainLeave = true
+				else
+					if self.LocalInterval > 0 then
+						self.LocalInterval = self.LocalInterval - 1
+					else
+						self.LocalInterval = -1 -- поезд прибывает
+					end
+				end
 			end
 		end
 	else
-		--self.TrainLeaves = false
-	end 
+		self.TrainLeave = false
+	end
 	self:SetNextClientThink(CurTime()+1)
 	return true
 end

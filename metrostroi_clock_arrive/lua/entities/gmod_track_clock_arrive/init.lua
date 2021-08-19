@@ -71,7 +71,7 @@ function ENT:Think()
 		end
 	end
 	self:SetNW2Int("ArriveTime",min_arr) 
-	--[[временно отключено, под вопросом
+	--[[ временно отключено, и вообще под вопросом 
 	net.Start("ClockArriveTime")
 	net.WriteInt(min_arr, 13)  
 	net.Broadcast()]]

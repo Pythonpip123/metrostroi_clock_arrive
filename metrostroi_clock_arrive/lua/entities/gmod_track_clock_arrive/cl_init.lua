@@ -155,8 +155,8 @@ end
 function ENT:Think()	
 	
     if self:IsDormant() then
-        self:OnRemove()
-        return
+		self:SetNextClientThink(CurTime()+1)
+		return true
     end
 	--[[ временно отключено, под вопросом 
 	net.Receive("ClockArriveTime", function()
@@ -169,7 +169,7 @@ function ENT:Think()
 		return self.ArriveTime
 	end) ]]
 	
-	--print(self.Station.." - "..self.Path.." - "..self.RealInterval)
+	--print(self.Station.." - "..self.Path.." - "..self.RealInterval) 	--отладочная строка
 	
     if not self:GetTrain() or self.TrainLeaves then		
 		self.RealInterval = self:GetNW2Int("ArriveTime", -1)
@@ -205,6 +205,4 @@ function ENT:Think()
 	return true
 end
 
-function ENT:OnRemove() 	
-	-- типа должно быть, а внутри хз что
-end 
+

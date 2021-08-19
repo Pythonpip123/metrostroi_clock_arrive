@@ -27,17 +27,17 @@ function ENT:Think()
 			local train = self.Platform.CurrentTrain
 			if self:GetTrain() == false then self:SetTrain(true) end
 			if train.Speed < 1 then
-				self:GetTrainStopped(true)
+				if self:GetTrainStopped() == false then self:SetTrainStopped(true) end
 			else
-				self:GetTrainStopped(false)  
+				if self:GetTrainStopped() == true then self:SetTrainStopped(false) end
 			end
 		else
-			--if self:GetTrain() == true then self:SetTrain(false) end
-			--if self:GetTrainStopped() == true then self:SetTrainStopped(false) end
+			if self:GetTrain() == true then self:SetTrain(false) end
+			if self:GetTrainStopped() == true then self:SetTrainStopped(false) end
 		end
 	else
 		self.Platform = FindPlatform(self.Station,self.Path)
-	end 
+	end
 	
 	local MetrostroiTrainPositions = Metrostroi.TrainPositions or {}
 	local ArriveTimes = {}

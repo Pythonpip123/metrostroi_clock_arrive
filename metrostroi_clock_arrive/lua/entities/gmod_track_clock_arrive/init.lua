@@ -46,8 +46,10 @@ function ENT:Think()
 	for train, position in pairs(MetrostroiTrainPositions) do	
 		
 		local TrainPath = train:ReadCell(49170)
+		local TrainStation = train:ReadCell(49160)
 		local StationPath = self.Path
 		if StationPath != TrainPath then continue end
+		if math.abs(self.Station - TrainStation) > 3 then continue end
 		local TrainPos = position[1]
 		local StationPos = Metrostroi.GetPositionOnTrack(self.Platform.PlatformStart)
 		StationPos = StationPos[1]

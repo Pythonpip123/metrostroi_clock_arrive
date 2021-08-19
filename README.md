@@ -1,10 +1,8 @@
-# Metrostroi Clock Arrive V2.0
+# Metrostroi Clock Arrive V2.0 (RU)
 
 **Модель:** Jarrius
 
 **Скрипты:** Alexell
-
-**Website:** https://alexell.ru/
 
 ![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive.jpg)
 
@@ -33,3 +31,35 @@
 **P.S.** Для того чтобы быстро прописать линию и цвет на все мониторы, используйте кнопку **R** чтобы копировать настройки монитора, затем измените линию и цвет и обновите настройки монитора по **ЛКМ**.
 
 Не забывайте сохранять мониторы после внесения любых изменений!
+
+
+# Metrostroi Clock Arrive V2.0 (EN)
+
+**Models:** Jarrius
+
+**Scripts:** Alexell
+
+**Original addon on Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
+
+**Description:**
+
+Monitors that show line, destination, and the approximate time of the next train arival.
+
+**How to spawn and save:**
+
+* **Primary (LMB):** Spawn a new monitor / update monitor (if aimed on an existing monitor)
+* **Secondary (RMB):** Remove a monitor (if aimed on an existing monitor)
+* **Reload (R):** Copy monitor properties to spawner menu
+
+Before spawning a monitor you need to define station ID, station path, number and color of line and destination (usually next station or ending station). You can enable debug mode in Metrostroi to check station platform marks that show station ID and station path. Mind that station ID and station path **must be valid and refer to a station you spawn a monitor**.
+
+After all monitor are spawned (or after each monitor spawn) you need to click **save** button in spawned menu. All monitors' data will be saved to `data/clocks_arrive.txt` on your server. Monitors themselves will be automatically spawned on map start.
+
+**Notice**: pressing **load clocks** button will cause deletion of all existing monitors on map and respawn of all clocks saved in `data/clocks_arrive.txt` file.
+
+**Fix angles of new monitors:**
+
+If you have some old monitors, that use old model, then you will face a problem with wrong spawn angles. Use the "fix old positions/angles" to fix that.
+
+**P.S.** Не забывайте сохранять мониторы после внесения любых изменений! Don't forget to save all changes that you've made before disconnecting, restarting server or changing map!
+

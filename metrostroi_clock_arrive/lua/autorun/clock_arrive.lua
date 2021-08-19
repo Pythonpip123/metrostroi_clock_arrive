@@ -7,9 +7,10 @@ if CLIENT then
 	local Line_B = CreateClientConVar("clock_arrive_line_b",128,false)
 	local Next = CreateClientConVar("clock_arrive_dest","Не указано",false)
 else
-	--TrainsArrive = TrainsArrive or {}
+
 	util.AddNetworkString("SpawnClockArrive")
-	--util.AddNetworkString("ClockArriveTime") 		-- временно отключено, под вопросом
+	--[[ временно отключено, и вообще под вопросом 
+	--util.AddNetworkString("ClockArriveTime") 	]]	
 	local function SpawnClockArrive(ply,vec,ang,station,path,dest,line,color)
 		local ex_vec
 		local ex_ang
@@ -58,60 +59,6 @@ else
 			if v.StationIndex == st and v.PlatformIndex == path then return v end
 		end
 	end
-
-	--[[timer.Create("CAUpdateTrainsInfo",3,0,function()
-		local TrainPositions = {}
-		for train,tpos in pairs(Metrostroi.TrainPositions) do
-			if not IsValid(train) then continue end
-			if train.Base ~= "gmod_subway_base" and train:GetClass() ~= "gmod_subway_base" then continue end
-			local p = train:ReadCell(49167)
-			table.insert(TrainPositions,{path=p,pos=tpos[1]})
-		end
-
-		for k,v in pairs(ents.FindByClass("gmod_track_platform")) do
-			local PlatformArrives = {}
-			for k2,v2 in pairs(TrainPositions) do
-				local path = v2.path
-				if v.PlatformIndex == path then
-					local train_pos = v2.pos
-					local station_pos = Metrostroi.GetPositionOnTrack(v.PlatformEnd)
-					if station_pos then
-						station_pos = station_pos[1]
-						local arr,dist = Metrostroi.GetTravelTime(train_pos.node1,station_pos.node1)
-						if arr < 600 then
-							table.insert(PlatformArrives,math.Round(arr))
-						end
-					end
-				end
-			end
-			TrainsArrive[v] = {}
-			TrainsArrive[v].station = v.StationIndex
-			TrainsArrive[v].path = v.PlatformIndex
-			TrainsArrive[v].arrives = PlatformArrives
-		end
-		for _,ent in pairs(ents.FindByClass("gmod_track_clock_arrive")) do
-			if not IsValid(ent) or not ent.Station or not ent.Path then continue end
-			local ArrTimes = {}
-			
-			for k,v in pairs(TrainsArrive) do
-				if ent.Path == v.path and ent.Station == v.station then 
-					ArrTimes = v.arrives
-					if #ArrTimes < 1 then
-						ent:SetNW2Int("ArrTime",-1)
-						break
-					else
-						local min_arr
-						for k,v in pairs(ArrTimes) do
-							if not min_arr or (v < min_arr and v > 15) then min_arr = v end
-						end
-						--print(min_arr)
-						ent:SetNW2Int("ArrTime",min_arr)
-						break
-					end
-				end
-			end
-		end
-	end) ]]
 	
 	concommand.Add("clocks_arrive_save", function(ply)
 		if not IsValid(ply) or not ply:IsAdmin() then return end

@@ -12,7 +12,7 @@
 
 **Что нового:**
 * Теперь каждый монитор - самостоятельная энтити и выполняет все вычисления независимо от других
-* Время прибытия теперь просчитывается по всей линии, но показывается только если меньше 10 минут
+* Время прибытия рассчитывается в рамках 3 перегонов между поездом и часами
 * Оптимизирована передача данных от сервера игрокам
 * Добвален режим ожидания с надписью "Подключение установлено"
 
@@ -53,7 +53,7 @@
 
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others
-* The time now is calculated for the whole line, but shown only if less than 10 mins
+* The time now is calculated for the range of 3 stations between train and clocks
 * Optimized data transmission between server and clients
 * Added standby screen for monitors whith M and text "Подключение установлено"
 

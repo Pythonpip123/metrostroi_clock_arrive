@@ -141,10 +141,12 @@ else
 			if IsValid(ply) then ply:ChatPrint("No clocks arrive for this map.") end
 			return
 		else
-			for _,val in ipairs(Clocks) do
-				SpawnClockArrive(nil,val[1],val[2],val[3],val[4],val[5],val[6],val[7])
-			end
-			print("Loaded "..#Clocks.." clocks arrive.")
+			timer.Simple(1,function()    
+				for _,val in ipairs(Clocks) do
+					SpawnClockArrive(nil,val[1],val[2],val[3],val[4],val[5],val[6],val[7])
+				end
+				print("Loaded "..#Clocks.." clocks arrive.")
+			end)
 		end
 		if IsValid(ply) then ply:ChatPrint("Loaded "..#Clocks.." clocks arrive.") end
 	end)

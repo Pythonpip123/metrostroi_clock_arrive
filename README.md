@@ -8,6 +8,11 @@
 
 **Оригинальный аддон в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
 
+**Что нового:**
+* Теперь каждый монитор - самостоятельная энтити и выполняет все вычисления независимо от других
+* Оптимизирована передача данных от сервера игрокам
+* Добвален режим ожидания с надписью "Подключение установлено"
+
 **Описание:**
 
 Мониторы для станций, отображающие линию, направление и время до прибытия состава.
@@ -40,6 +45,11 @@
 **Scripts:** Alexell
 
 **Original addon on Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
+
+**Changelog:**
+* Each monitor is a standalone entity and calculates everything itself independently of others
+* Optimized data transmission between server and clients
+* Added start screen for monitors whith M and text "Подключение установлено"
 
 **Description:**
 

@@ -8,6 +8,8 @@
 
 **Оригинальный аддон в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
 
+**Новая версия в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=2579263629
+
 **Что нового:**
 * Теперь каждый монитор - самостоятельная энтити и выполняет все вычисления независимо от других
 * Время прибытия теперь просчитывается по всей линии, но показывается только если меньше 10 минут
@@ -46,6 +48,8 @@
 **Scripts:** Alexell
 
 **Original addon on Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
+
+**V2.0 addon в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=2579263629
 
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others

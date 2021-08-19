@@ -49,7 +49,7 @@
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others
 * Optimized data transmission between server and clients
-* Added start screen for monitors whith M and text "Подключение установлено"
+* Added standby screen for monitors whith M and text "Подключение установлено"
 
 **Description:**
 

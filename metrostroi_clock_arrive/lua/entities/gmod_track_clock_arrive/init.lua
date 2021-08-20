@@ -47,10 +47,10 @@ function ENT:Think()
 		
 		local TrainPath = train:ReadCell(49170)
 		local TrainStation = train:ReadCell(49160)
-		if not TrainStation then TrainStation = train:ReadCell(49161) end
+		if TrainStation == 0 then TrainStation = train:ReadCell(49161) end
 		local StationPath = self.Path
 		if StationPath != TrainPath then continue end
-		if math.abs(self.Station - TrainStation) > 3 then continue end
+		if math.abs(self.Station - TrainStation) > 2 then continue end
 		local TrainPos = position[1]
 		local StationPos = Metrostroi.GetPositionOnTrack(self.Platform.PlatformStart)
 		StationPos = StationPos[1]
@@ -61,7 +61,7 @@ function ENT:Think()
 			if ArrTime < 600 then
 				table.insert(ArriveTimes, math.Round(ArrTime))
 			end
-		end		
+		end			
 	end
 	
 	if #ArriveTimes < 1 then 

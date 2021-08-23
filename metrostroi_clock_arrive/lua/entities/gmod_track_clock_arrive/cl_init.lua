@@ -173,7 +173,7 @@ function ENT:Think()
 	
     if not self:GetTrain() or self.TrainLeaves then		
 		self.RealInterval = self:GetNW2Int("ArriveTime", -1)
-		if self.RealInterval >= 3 then
+		if self.RealInterval >= 5 then
 			if self.LastInterval == self.RealInterval and self.Repeat < 3 then
 				self.LocalInterval = self.LocalInterval - 1
 				self.Repeat = self.Repeat + 1
@@ -182,7 +182,7 @@ function ENT:Think()
 				self.LocalInterval = self.RealInterval
 				self.Repeat = 0
 			end
-		elseif self.RealInterval > 0 and self.RealInterval < 3 then
+		elseif self.RealInterval > 0 and self.RealInterval < 5 then
 			self.LocalInterval = -1 -- поезд прибывает
 		else 
 			self.LocalInterval = -2 -- часы гаснут

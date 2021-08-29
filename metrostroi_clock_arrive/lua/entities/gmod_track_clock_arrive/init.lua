@@ -9,51 +9,6 @@ local function FindPlatform(st,path)
 	end
 end
 
-local function GetTravelTime(src,dest)
-	-- Determine direction of travel
-	local direction = src.x < dest.x
-
-	-- Accumulate travel time
-	local travel_time = 0
-	local travel_dist = 0
-	local avg_speed = 0
-	local travel_speed = 20
-	local iter = 0
-	local ars_rccount = 0
-	function scan(node,path)		
-		while (node) and (direction) and (node ~= dest) do
-			local ars_speed
-			local ars_joint = Metrostroi.GetARSJoint(node,node.x+0.01,path or true)
-			if ars_joint then
-				local ARSLimit = ars_joint:GetMaxARS()
-				if ARSLimit >= 4  then
-					ars_speed = ARSLimit*10
-				end
-			end
-			
-			-- count and sum all ARS Limits 
-			if ars_speed then 
-				avg_speed = avg_speed + ars_speed 
-				ars_rccount = ars_rccount + 1
-			end
-			-- count and sum all node lengths
-			travel_dist = travel_dist + node.length
-			node = node.next
-			
-			if not node then break end
-			-- restrict calculations within another track
-			--if src.path == dest.path and node.branches and node.branches[1][2].path == src.path then scan(node,src.x > node.branches[1][2].x) end
-			--if src.path == dest.path and node.branches and node.branches[2] and node.branches[2][2].path == src.path then scan(node,src.x > node.branches[1][1].x) end
-			assert(iter < 10000, "OH SHI~")
-			iter = iter + 1
-		end
-		avg_speed = (avg_speed*0.20)/ars_rccount
-		travel_time = travel_dist/avg_speed
-	end
-	scan(src)
-	return travel_time,travel_dist
-end
-
 function ENT:Initialize()
 	self:SetModel("models/alexell/clock_arrive.mdl")
 	self:SetSolid(SOLID_VPHYSICS)

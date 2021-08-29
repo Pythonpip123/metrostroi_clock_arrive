@@ -61,7 +61,7 @@ function ENT:Think()
 		
 		local TrainNodeID = TrainPos.node1.id
 
-		local direction = TrainPos.x < StationPos[1].x
+		local direction = TrainNodeID < StationNodeID
 		if not direction then continue end
 		
 		-- временное ограничение по дальности просчета

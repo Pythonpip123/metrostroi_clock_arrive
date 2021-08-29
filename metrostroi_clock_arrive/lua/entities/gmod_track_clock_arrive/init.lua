@@ -109,7 +109,8 @@ function ENT:Think()
 		local direction = TrainPos.x < StationPos[1].x
 		if not direction then continue end
 		
-		--if math.abs(StationNodeID - TrainNodeID) > 450 then continue end
+		-- временное ограничение по дальности просчета
+		if math.abs(StationNodeID - TrainNodeID) > 750 then continue end 
 		
 		if StationPos[1] and TrainPos then 
 			if not min_dist or math.abs(StationNodeID - TrainNodeID) < min_dist then

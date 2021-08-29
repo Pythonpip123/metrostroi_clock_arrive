@@ -74,24 +74,8 @@ function ENT:Think()
 				NearestTrainNode = TrainPos.node1
 			end			
 		end
-
-		--[[if StationPos[1] and TrainPos then 
-			local ArrTime,Dist = GetTravelTime(TrainPos.node1, StationPos[1].node1)
-			if ArrTime < 600 then
-				table.insert(ArriveTimes, math.Round(ArrTime))
-			end
-		end	]]
 	end
 	
-	--[[if #ArriveTimes < 1 then 
-		ArriveTime = -1
-	else
-		for k,v in pairs(ArriveTimes) do
-			if not ArriveTime or v < ArriveTime then 
-				ArriveTime = v 
-			end
-		end
-	end ]]
 	if NearestTrainNode and StationPos[1] then
 		ArriveTime = Metrostroi.GetTravelTime(NearestTrainNode, StationPos[1].node1)
 	else

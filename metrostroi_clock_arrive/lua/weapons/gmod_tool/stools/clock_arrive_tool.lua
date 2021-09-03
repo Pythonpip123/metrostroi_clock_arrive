@@ -1,5 +1,5 @@
 TOOL.Category		= "Metro"
-TOOL.Name			= "Clock Arrive Tool"
+TOOL.Name		= "Clock Arrive Tool"
 TOOL.Command		= nil
 TOOL.ConfigName		= ""
 
@@ -15,7 +15,7 @@ function TOOL:LeftClick(trace)
 	if self.LastUse and CurTime() - self.LastUse < 1 then return end
 	self.LastUse = CurTime()
 	local ply = self:GetOwner()
-	if LocalPlayer() ~= ply then return false end
+	if LocalPlayer() != ply then return false end
 	if not ply:IsValid() or not ply:IsAdmin() then return false end
 	if not trace then return false end
 	if trace.Entity and trace.Entity:IsPlayer() then return false end
@@ -63,7 +63,7 @@ function TOOL:Reload(trace)
     if SERVER then return end
 
 	local ply = self:GetOwner()
-	if LocalPlayer() ~= ply then return false end
+	if LocalPlayer() != ply then return false end
 	if not ply:IsValid() or not ply:IsAdmin() then return false end
 	if not trace then return false end
 	if trace.Entity and trace.Entity:IsPlayer() then return false end

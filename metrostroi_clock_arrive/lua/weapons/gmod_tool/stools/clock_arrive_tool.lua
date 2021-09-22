@@ -1,5 +1,5 @@
 TOOL.Category		= "Metro"
-TOOL.Name		= "Clock Arrive Tool"
+TOOL.Name			= "Clock Arrive Tool"
 TOOL.Command		= nil
 TOOL.ConfigName		= ""
 
@@ -15,7 +15,7 @@ function TOOL:LeftClick(trace)
 	if self.LastUse and CurTime() - self.LastUse < 1 then return end
 	self.LastUse = CurTime()
 	local ply = self:GetOwner()
-	if LocalPlayer() != ply then return false end
+	if LocalPlayer() ~= ply then return false end
 	if not ply:IsValid() or not ply:IsAdmin() then return false end
 	if not trace then return false end
 	if trace.Entity and trace.Entity:IsPlayer() then return false end
@@ -27,6 +27,7 @@ function TOOL:LeftClick(trace)
 	local station = GetConVar("clock_arrive_st"):GetString()
 	local path = GetConVar("clock_arrive_path"):GetString()
 	local dest = GetConVar("clock_arrive_dest"):GetString()
+	local dist = GetConVar("clock_arrive_dist"):GetString()
 	local line = GetConVar("clock_arrive_line"):GetString()
 	local line_color = GetConVar("clock_arrive_line_r"):GetString()..","..GetConVar("clock_arrive_line_g"):GetString()..","..GetConVar("clock_arrive_line_b"):GetString()
 
@@ -36,6 +37,7 @@ function TOOL:LeftClick(trace)
 		net.WriteString(station)
 		net.WriteString(path)
 		net.WriteString(dest)
+		net.WriteString(dist)
 		net.WriteString(line)
 		net.WriteString(line_color)
 	net.SendToServer()
@@ -63,7 +65,7 @@ function TOOL:Reload(trace)
     if SERVER then return end
 
 	local ply = self:GetOwner()
-	if LocalPlayer() != ply then return false end
+	if LocalPlayer() ~= ply then return false end
 	if not ply:IsValid() or not ply:IsAdmin() then return false end
 	if not trace then return false end
 	if trace.Entity and trace.Entity:IsPlayer() then return false end
@@ -72,16 +74,17 @@ function TOOL:Reload(trace)
 	for k,v in pairs(entlist) do
 		if v:GetClass() == "gmod_track_clock_arrive" then
 			if IsValid(v) then
-				local ent = v
-				local station = tostring(ent.Station)
-				local path = tostring(ent.Path)
-				local dest = ent.Dest
-				local line = ent.Line
-				local color = ent.Color
+				local station = tostring(v.Station)
+				local path = tostring(v.Path)
+				local dist = tostring(v.Distance)
+				local dest = v.Dest				
+				local line = v.Line
+				local color = v.Color
 				
 				RunConsoleCommand("clock_arrive_st",station)
 				RunConsoleCommand("clock_arrive_path",path)
 				RunConsoleCommand("clock_arrive_dest",dest)
+				RunConsoleCommand("clock_arrive_dist",dist)
 				RunConsoleCommand("clock_arrive_line",line)
 				RunConsoleCommand("clock_arrive_line_r",color.r)
 				RunConsoleCommand("clock_arrive_line_g",color.g)
@@ -91,49 +94,56 @@ function TOOL:Reload(trace)
 	end
     return true
 end
-
+--language.GetPhrase("spawnmenu.content_tab")
 function TOOL.BuildCPanel(panel)
+	panel:AddControl("label",{ 
+		text = language.GetPhrase("clockarrive.tool.label_main")
+	})
 	panel:AddControl("textbox",{ 
-		Label = "ID станции", 
+		Label = language.GetPhrase("clockarrive.tool.station_ID"), 
 		Command = "clock_arrive_st"
 	})
 	
 	panel:AddControl("textbox",{ 
-		Label = "Путь", 
+		Label = language.GetPhrase("clockarrive.tool.station_path"), 
 		Command = "clock_arrive_path"
 	})
 	panel:AddControl("textbox",{ 
-		Label = "Направление",
+		Label = language.GetPhrase("clockarrive.tool.destination"), 
 		Command = "clock_arrive_dest"
 	})
+	panel:AddControl("textbox",{ 
+		Label = language.GetPhrase("clockarrive.tool.distance"), 
+		Command = "clock_arrive_dist"
+	})
 	panel:AddControl("slider",{
-		Label="Линия",
+		Label = language.GetPhrase("clockarrive.tool.line_number"), 
 		Command="clock_arrive_line",
 		min=1,
 		max=8
 	})
 	panel:AddControl("color",{
-		Label="Цвет линии",
+		Label = language.GetPhrase("clockarrive.tool.line_color"), 
 		Red="clock_arrive_line_r",
 		Green="clock_arrive_line_g",
 		Blue="clock_arrive_line_b"
 	})
 
 	panel:AddControl("button",{ 
-		Label = "Сохранить мониторы", 
+		Label = language.GetPhrase("clockarrive.tool.button_save"), 
 		Command = "clocks_arrive_save"
 	})
 	panel:AddControl("button",{ 
-		Label = "Загрузить мониторы", 
+		Label = language.GetPhrase("clockarrive.tool.button_load"), 
 		Command = "clocks_arrive_load"
 	})
 	
-	-- Временная кнопка
+	-- Временная кнопка 
 	panel:AddControl("label",{ 
-		text = "Кнопка ниже исправит позицию и углы всех мониторов на карте, если они стали повернуты не той стороной после обновления модели.\nПосле исправления не забудьте сохранить мониторы!"
+		text = language.GetPhrase("clockarrive.tool.label_fix"), 
 	})
 	panel:AddControl("button",{ 
-		Label = "Исправить старые углы/позиции", 
+		Label = language.GetPhrase("clockarrive.tool.button_fix"), 
 		Command = "clocks_arrive_fix"
 	})
 end

@@ -18,6 +18,7 @@ function ENT:Initialize()
 	self.Station = self:GetNW2Int("Station",0)
 	self.Path = self:GetNW2Int("Path",0)
 	self.Platform = FindPlatform(self.Station,self.Path)
+	self.Distance = self:GetNW2Int("Distance",1500)
 	self.ArriveTime = 0
 end
 
@@ -44,6 +45,7 @@ function ENT:Think()
 	local NearestTrainNode
 	local min_dist
 	local ArriveTime	
+	local NodesRange = self.Distance/10 
 	
 	local StationPos = Metrostroi.GetPositionOnTrack(self.Platform.PlatformStart)
 	local StationPath = StationPos[1].node1.path.id	
@@ -64,8 +66,8 @@ function ENT:Think()
 		local direction = TrainNodeID < StationNodeID
 		if not direction then continue end
 		
-		-- временное ограничение по дальности просчета
-		if math.abs(StationNodeID - TrainNodeID) > 750 then continue end 
+		-- удобное ограничение по дальности просчета
+		if math.abs(StationNodeID - TrainNodeID) > NodesRange then continue end 
 		
 		if StationPos[1] and TrainPos then 
 			if not min_dist or math.abs(StationNodeID - TrainNodeID) < min_dist then

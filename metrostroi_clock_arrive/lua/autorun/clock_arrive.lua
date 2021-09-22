@@ -6,12 +6,13 @@ if CLIENT then
 	local Line_G = CreateClientConVar("clock_arrive_line_g",128,false)
 	local Line_B = CreateClientConVar("clock_arrive_line_b",128,false)
 	local Next = CreateClientConVar("clock_arrive_dest","Не указано",false)
+	local Dist = CreateClientConVar("clock_arrive_dist",2500,false)
 else
 
 	util.AddNetworkString("SpawnClockArrive")
 	--[[ временно отключено, и вообще под вопросом 
 	--util.AddNetworkString("ClockArriveTime") 	]]	
-	local function SpawnClockArrive(ply,vec,ang,station,path,dest,line,color)
+	local function SpawnClockArrive(ply,vec,ang,station,path,dest,dist,line,color)
 		local ex_vec
 		local ex_ang
 		if IsValid(ply) then
@@ -40,17 +41,19 @@ else
 		end
 		ent.Station = tonumber(station)
 		ent.Path = tonumber(path)
+		ent.Distance = tonumber(dist)
 		ent:SetNW2Int("Station",station)
 		ent:SetNW2Int("Path",path)
 		ent:SetNW2String("Destination",dest)
+		ent:SetNW2Int("Distance",dist)
 		ent:SetNW2String("Line",line)
 		ent:SetNW2String("LineColor",color)
 	end
 	
 	net.Receive("SpawnClockArrive", function(len,ply)
 		if not ply:IsAdmin() then return end
-		local vec,ang,station,path,dest,line,color = net.ReadVector(),net.ReadAngle(),net.ReadString(),net.ReadString(),net.ReadString(),net.ReadString(),net.ReadString()
-		SpawnClockArrive(ply,vec,ang,station,path,dest,line,color)
+		local vec,ang,station,path,dest,dist,line,color = net.ReadVector(),net.ReadAngle(),net.ReadString(),net.ReadString(),net.ReadString(),net.ReadString(),net.ReadString(),net.ReadString()
+		SpawnClockArrive(ply,vec,ang,station,path,dest,dist,line,color)
 	end)
 	
 	local function FindPlatform(st,path)
@@ -67,7 +70,17 @@ else
 		local cur_map = game.GetMap()
 		Clocks[cur_map] = {}
 		for _,ent in pairs(ents.FindByClass("gmod_track_clock_arrive")) do
-			if IsValid(ent) then table.insert(Clocks[cur_map],1,{ent:GetPos(),ent:GetAngles(),ent.Station,ent.Path,ent:GetNW2String("Destination"),ent:GetNW2String("Line"),ent:GetNW2String("LineColor")}) end
+			if IsValid(ent) then 
+				table.insert(Clocks[cur_map],{
+					Pos = ent:GetPos(),
+					Angles = ent:GetAngles(),
+					StationID = ent.Station,
+					StationPath = ent.Path,
+					Destination = ent:GetNW2String("Destination"),
+					Distance = ent.Distance,
+					Line = ent:GetNW2String("Line"),
+					LineColor = ent:GetNW2String("LineColor")})
+			end
 		end
 		file.Write("clocks_arrive.txt", util.TableToJSON(Clocks,true))
 		print("Saved "..#Clocks[cur_map].." clocks arrive.")
@@ -89,8 +102,8 @@ else
 			return
 		else
 			timer.Simple(1,function()    
-				for _,val in ipairs(Clocks) do
-					SpawnClockArrive(nil,val[1],val[2],val[3],val[4],val[5],val[6],val[7])
+				for _,clockdata in ipairs(Clocks) do
+					SpawnClockArrive(nil,clockdata.Pos,clockdata.Angles,clockdata.StationID,clockdata.StationPath,clockdata.Destination,clockdata.Distance,clockdata.Line,clockdata.LineColor)
 				end
 				print("Loaded "..#Clocks.." clocks arrive.")
 			end)
@@ -98,19 +111,39 @@ else
 		if IsValid(ply) then ply:ChatPrint("Loaded "..#Clocks.." clocks arrive.") end
 	end)
 	
-	-- Временная команда
+	-- Временная команда 
 	concommand.Add("clocks_arrive_fix", function(ply)
-		if not IsValid(ply) or not ply:IsAdmin() then return end
-		local col = 0
-		for _,ent in pairs(ents.FindByClass("gmod_track_clock_arrive")) do
-			if not IsValid(ent) then continue end
-			local ang = ent:GetAngles()
-			ang:RotateAroundAxis(ang:Up(),-90)
-			ent:SetAngles(ang)
-			ent:SetPos(ent:LocalToWorld(Vector(3,0,0)))
-			col = col + 1
+		if IsValid(ply) and not ply:IsAdmin() then return end
+		local NewClocks = {}
+		local fl = file.Read("clocks_arrive.txt")
+		local Clocks = fl and util.JSONToTable(fl) or {}
+		local cur_map = game.GetMap()
+		NewClocks[cur_map] = {}
+
+		if not Clocks[cur_map] or #Clocks[cur_map]  < 1 then
+			print("No clocks to fix on this map")
+			if IsValid(ply) then 
+				ply:ChatPrint("No clocks to fix on this map")
+			end
+			return
+		else
+			for _,val in ipairs(Clocks[cur_map]) do
+					table.insert(NewClocks[cur_map],{
+						Pos = val[1],
+						Angles = val[2],
+						StationID = val[3],
+						StationPath = val[4],
+						Destination = val[5],
+						Distance = 2500,
+						Line = val[6],
+						LineColor = val[7]})			
+			end	
+			table.Empty(Clocks[cur_map])
 		end
-		if IsValid(ply) then ply:ChatPrint("Fixed "..col.." clocks arrive.") end
+		table.Merge(Clocks, NewClocks)
+		file.Write("clocks_arrive.txt", util.TableToJSON(Clocks,true))
+		print("Fixed "..#NewClocks[cur_map].." clocks arrive.")		
+		if IsValid(ply) then ply:ChatPrint("Fixed "..#NewClocks[cur_map].." clocks arrive.") end
 	end)
 	timer.Create("ClocksArriveLoad",4,1,function() RunConsoleCommand("clocks_arrive_load") timer.Remove("ClocksArriveLoad") end)
 end

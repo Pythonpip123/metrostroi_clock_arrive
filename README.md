@@ -58,12 +58,12 @@
 * The time now is calculated for the range of 3 stations between train and clocks
 * Optimized data transmission between server and clients
 * Added standby screen for monitors whith M and text "Подключение установлено"
-* Added new parameter Distance that defines the distance (in meters) of calculation for each clocks
+* Added new parameter Distance that defines the distance of calculation (in meters) for each clocks
 * Added localization (RU + EN)
 
 **Description:**
 
-Monitors that show line, destination, and the approximate time of the next train arival.
+Monitors that show line, destination, and the approximate time of the next train arrival.
 
 **How to spawn and save:**
 
@@ -75,7 +75,7 @@ Before spawning a monitor you need to define station ID, station path, number an
 
 After all monitor are spawned (or after each monitor spawn) you need to click **save** button in spawned menu. All monitors' data will be saved to `data/clocks_arrive.txt` on your server. Monitors themselves will be automatically spawned on map start.
 
-**Notice**: pressing **load clocks** button will cause deletion of all existing monitors on map and respawn of all clocks saved in `data/clocks_arrive.txt` file.
+**Notice**: pressing **load** button will cause deletion of all existing monitors on map and respawn of all monitors saved in `data/clocks_arrive.txt` file.
 
 **Fix old savedata:**
 If you have some old monitors, spawned and saved before version 2.1 release, you will have spawn errors on serverside. Use fix button to update clock savedata and reload all clocks afterwards.

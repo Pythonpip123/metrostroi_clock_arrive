@@ -11,8 +11,7 @@
 **Новая версия в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=2579263629
 
 **Что нового:**
-* Теперь каждый монитор - самостоятельная энтити и выполняет все вычисления независимо от других
-* Время прибытия рассчитывается в рамках 3 перегонов между поездом и часами
+* Теперь каждый монитор - самостоятельная единица и выполняет все просчёты независимо от других
 * Оптимизирована передача данных от сервера игрокам
 * Добавлен режим ожидания с логотипом М и надписью "Подключение установлено"
 * Добавлен параметр Дистанция, который определяет дальность просчёта (в метрах) для каждого монитора
@@ -55,10 +54,9 @@
 
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others
-* The time now is calculated for the range of 3 stations between train and clocks
 * Optimized data transmission between server and clients
 * Added standby screen for monitors whith M and text "Подключение установлено"
-* Added new parameter Distance that defines the distance of calculation (in meters) for each clocks
+* Added new parameter Distance, that defines the distance of calculation (in meters) for each clocks
 * Added localization (RU + EN)
 
 **Description:**

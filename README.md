@@ -1,4 +1,4 @@
-# Metrostroi Clock Arrive V2.0 (RU)
+# Metrostroi Clock Arrive V2.1 (RU)
 
 ![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive_v20.jpg)
 
@@ -15,6 +15,8 @@
 * Время прибытия рассчитывается в рамках 3 перегонов между поездом и часами
 * Оптимизирована передача данных от сервера игрокам
 * Добавлен режим ожидания с логотипом М и надписью "Подключение установлено"
+* Добавлен параметр Дистанция, который определяет дальность просчёта (в метрах) для каждого монитора
+* Добавлена локализация (RU + EN)
 
 **Описание:**
 
@@ -32,16 +34,16 @@
 
 **Будьте внимательны:** нажатие кнопки "Загрузить часы" удалит все заспавненные мониторы на карте, прежде чем загрузить их из файла.
 
-**Исправляем поворот новой модели монитора:**
+**Исправляем данные в файле сохранения:**
 
-Если у вас есть сохраненные до обновления аддона мониторы, то скорее всего теперь они повернуты неправильно. Для того чтобы атоматически исправить все мониторы на карте, в спавнере предусмотена кнопка "Исправить старые углы/позиции".
+Если у вас есть мониторы, созданные до выхода версии 2.1, то на сервере будет ошибка спавна часов. Чтобы исправить данные в файле clocks_arrive.txt, воспользуйтесь кнопкой "Исправить старые данные".
 
 **P.S.** Для того чтобы быстро прописать линию и цвет на все мониторы, используйте кнопку **R** чтобы копировать настройки монитора, затем измените линию и цвет и обновите настройки монитора по **ЛКМ**.
 
 Не забывайте сохранять мониторы после внесения любых изменений!
 
 
-# Metrostroi Clock Arrive V2.0 (EN)
+# Metrostroi Clock Arrive V2.1 (EN)
 
 **Models:** Jarrius
 
@@ -49,13 +51,15 @@
 
 **Original addon on Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=1975028372
 
-**V2.0 addon в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=2579263629
+**V2.1 addon в Steam Workshop:** https://steamcommunity.com/sharedfiles/filedetails/?id=2579263629
 
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others
 * The time now is calculated for the range of 3 stations between train and clocks
 * Optimized data transmission between server and clients
 * Added standby screen for monitors whith M and text "Подключение установлено"
+* Added new parameter Distance that defines the distance (in meters) of calculation for each clocks
+* Added localization (RU + EN)
 
 **Description:**
 
@@ -73,9 +77,8 @@ After all monitor are spawned (or after each monitor spawn) you need to click **
 
 **Notice**: pressing **load clocks** button will cause deletion of all existing monitors on map and respawn of all clocks saved in `data/clocks_arrive.txt` file.
 
-**Fix angles of new monitors:**
-
-If you have some old monitors, that use old model, then you will face a problem with wrong spawn angles. Use the "fix old positions/angles" to fix that.
+**Fix old savedata:**
+If you have some old monitors, spawned and saved before version 2.1 release, you will have spawn errors on serverside. Use fix button to update clock savedata and reload all clocks afterwards.
 
 **P.S.** Don't forget to save all changes that you've made before disconnecting, restarting server or changing map!
 

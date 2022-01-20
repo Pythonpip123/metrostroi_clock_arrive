@@ -22,7 +22,7 @@ end
 CreateFont(nil,40,"ClockArriveSmall")
 CreateFont(nil,70,"ClockArriveMedium")
 CreateFont(nil,180,"ClockArriveDigits")
-CreateFont("Moscow Sans - Pictogram",90,"ClockArriveLine")
+CreateFont("Moscow Sans - Pictogram",90,"ClockArriveLineSmall")
 
 function ENT:Initialize()
 	self:SetModel("models/alexell/clock_arrive.mdl")
@@ -63,8 +63,15 @@ function ENT:Draw()
 			yalign = TEXT_ALIGN_CENTER,
 			color = Color(255,255,255,255)})
 		draw.Text({
+			text = os.date("!%d.%m.%Y  %H:%M:%S",Metrostroi.GetSyncTime()),
+			font = "ClockArriveSmall",
+			pos = {700,0},
+			xalign = TEXT_ALIGN_RIGHT,
+			yalign = TEXT_ALIGN_CENTER,
+			color = Color(255,255,255,255)})
+		draw.Text({
 			text = self.Line,
-			font = "ClockArriveLine",
+			font = "ClockArriveLineSmall",
 			pos = {0,60},
 			xalign = TEXT_ALIGN_LEFT,
 			yalign = TEXT_ALIGN_CENTER,
@@ -72,7 +79,7 @@ function ENT:Draw()
 		draw.Text({
 			text = self.Dest,
 			font = "ClockArriveMedium",
-			pos = {70,53},
+			pos = {70,55},
 			xalign = TEXT_ALIGN_LEFT,
 			yalign = TEXT_ALIGN_CENTER,
 			color = Color(255,255,255,255)})
@@ -87,8 +94,7 @@ function ENT:Draw()
 				pos = {0,120},
 				xalign = TEXT_ALIGN_LEFT,
 				yalign = TEXT_ALIGN_CENTER,
-				color = Color(255,255,255,255)})
-				
+				color = Color(255,255,255,255)})				
 			draw.Text({
 				text = arr_min,
 				font = "ClockArriveDigits",
@@ -129,23 +135,11 @@ function ENT:Draw()
 				color = Color(255,255,255,255)})
 		cam.End3D2D()
 	else 		
-		self:DrawModel()
 		cam.Start3D2D(pos,ang,0.1)
 			draw.Text({
-				text = "b ",
-				font = "ClockArriveLine",
-				pos = {305,60},
-				xalign = TEXT_ALIGN_LEFT,
-				yalign = TEXT_ALIGN_CENTER,
-				color = Color(255,0,0,255)
-			})
-		cam.End3D2D()
-		
-		cam.Start3D2D(pos,ang,0.1)
-			draw.Text({
-				text = "ПОДКЛЮЧЕНИЕ УСТАНОВЛЕНО",
+				text = "РЕЖИМ ОЖИДАНИЯ",
 				font = "ClockArriveSmall",
-				pos = {70,150},
+				pos = {175,180},
 				xalign = TEXT_ALIGN_LEFT,
 				yalign = TEXT_ALIGN_CENTER
 			})
@@ -158,16 +152,6 @@ function ENT:Think()
 		self:SetNextClientThink(CurTime()+1)
 		return true
     end
-	--[[ временно отключено, и вообще под вопросом 
-	net.Receive("ClockArriveTime", function()
-		local ETA = net.ReadInt(13)
-		if isnumber(ETA) and ETA > 0 then
-			self.ArriveTime = ETA
-		else
-			self.ArriveTime = -1
-		end
-		return self.ArriveTime
-	end) ]]
 	
 	--print(self.Station.." - "..self.Path.." - "..self.RealInterval) 	-- отладочная строка.. 
 	

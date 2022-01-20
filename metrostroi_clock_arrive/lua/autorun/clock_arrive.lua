@@ -10,8 +10,6 @@ if CLIENT then
 else
 
 	util.AddNetworkString("SpawnClockArrive")
-	--[[ временно отключено, и вообще под вопросом 
-	--util.AddNetworkString("ClockArriveTime") 	]]	
 	local function SpawnClockArrive(ply,vec,ang,station,path,dest,dist,line,color)
 		local ex_vec
 		local ex_ang

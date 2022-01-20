@@ -86,10 +86,7 @@ function ENT:Think()
 	if ArriveTime < 600 then
 		self:SetNW2Int("ArriveTime",ArriveTime) 
 	end
-	--[[ временно отключено, и вообще под вопросом 
-	net.Start("ClockArriveTime")
-	net.WriteInt(ArriveTime, 13)  
-	net.Broadcast()]]
+
 	self:NextThink(CurTime() + 3)
 	return true
 end

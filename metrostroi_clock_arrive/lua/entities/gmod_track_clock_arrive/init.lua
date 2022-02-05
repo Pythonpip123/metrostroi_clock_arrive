@@ -38,6 +38,10 @@ function ENT:Think()
 		end
 	else
 		self.Platform = FindPlatform(self.Station,self.Path)
+		if not IsValid(self.Platform) then
+			self:NextThink(CurTime() + 3)
+			return true			
+		end
 	end
 	
 	local MetrostroiTrainPositions = Metrostroi.TrainPositions or {}

@@ -47,7 +47,7 @@ function ENT:Think()
 	local ArriveTime	
 	local NodesRange = self.Distance/10 
 	
-	local StationPos = Metrostroi.GetPositionOnTrack(self.Platform.PlatformStart)
+	local StationPos = Metrostroi.GetPositionOnTrack(self.Platform.PlatformEnd)
 	local StationPath = StationPos[1].node1.path.id	
 	local StationNodeID = StationPos[1].node1.id	
 	

@@ -32,6 +32,7 @@ function ENT:Initialize()
 	self.TrainArrives = false
 	self.TrainLeaves = true
 	self.Dest = self:GetNW2String("Destination","Не указано")
+	self.Distance = self:GetNW2Int("Distance",1500)
 	local line = self:GetNW2String("Line","1")
 	if line == "" then line = "1" end
 	self.Line = line

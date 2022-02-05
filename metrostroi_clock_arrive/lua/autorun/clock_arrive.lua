@@ -6,7 +6,7 @@ if CLIENT then
 	local Line_G = CreateClientConVar("clock_arrive_line_g",128,false)
 	local Line_B = CreateClientConVar("clock_arrive_line_b",128,false)
 	local Next = CreateClientConVar("clock_arrive_dest","Не указано",false)
-	local Dist = CreateClientConVar("clock_arrive_dist",2500,false)
+	local Dist = CreateClientConVar("clock_arrive_dist",1500,false)
 else
 
 	util.AddNetworkString("SpawnClockArrive")
@@ -132,7 +132,7 @@ else
 						StationID = val[3],
 						StationPath = val[4],
 						Destination = val[5],
-						Distance = 2500,
+						Distance = 1500,
 						Line = val[6],
 						LineColor = val[7]})			
 			end	

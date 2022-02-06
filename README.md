@@ -13,7 +13,7 @@
 **Что нового:**
 * Теперь каждый монитор - самостоятельная единица и выполняет все просчёты независимо от других
 * Оптимизирована передача данных от сервера игрокам
-* Добавлен режим ожидания с логотипом М и надписью "Подключение установлено"
+* Добавлен режим ожидания 
 * Добавлен параметр Дистанция, который определяет дальность просчёта (в метрах) для каждого монитора
 * Добавлена локализация (RU + EN)
 
@@ -53,7 +53,7 @@
 **Changelog:**
 * Each monitor is a standalone entity and calculates everything itself independently of others
 * Optimized data transmission between server and clients
-* Added standby screen for monitors whith M and text "Подключение установлено"
+* Added standby screen for monitors 
 * Added new parameter Distance, that defines the distance of calculation (in meters) for each clocks
 * Added localization (RU + EN)
 

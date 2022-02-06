@@ -1,6 +1,6 @@
 # Metrostroi Clock Arrive V2.2 (RU)
 
-![Metrostroi Clock Arrive](http://mss.community/images/addons/metrostroi_clock_arrive_v21.jpg)
+![Metrostroi Clock Arrive](https://steamuserimages-a.akamaihd.net/ugc/1839159930078454125/3AE900544B87430EA66DC0B223BD40E5F2D69007/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
 
 **Модель:** Jarrius
 
